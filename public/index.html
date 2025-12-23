@@ -2,39 +2,42 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Kizhoo</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="bg"></div>
 
   <div class="form-container">
     <h1 class="title">To-Kizhoo</h1>
 
-    <input type="text" id="username" placeholder="Tulis nama kamu" required />
+    <input type="text" id="username" placeholder="Tulis nama kamu" required>
+
     <textarea id="message" placeholder="Masukkan pesan..." required></textarea>
 
     <div class="upload-box">
-      <label for="photo">📷 Kirim Foto (Opsional — bisa banyak)</label>
-      <input type="file" id="photo" accept="image/*" multiple>
+      <label>📷 Kirim Foto (opsional – bisa banyak)</label>
+      <input type="file" id="photo" multiple accept="image/*">
       <div id="previewBox"></div>
     </div>
 
-    <button onclick="sendMessage()" id="btn">Kirim Pesan</button>
+    <button id="sendBtn" onclick="sendMessage()">Kirim Pesan</button>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loading" class="hidden">
+    <div class="loader"></div>
+    <p>Mengirim...</p>
   </div>
 
   <!-- Toast -->
   <div id="toast"></div>
 
-  <!-- Loading -->
-  <div id="loading" class="hidden">
-    <div class="loader"></div>
-    <p>Sabar Lagi Dikirim...</p>
-  </div>
-
+  <!-- Sound -->
   <audio id="clickSound">
-    <source src="click.mp3" type="audio/mp3">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-cool-interface-click-tone-2568.mp3" type="audio/mp3">
   </audio>
 
   <script src="script.js"></script>
