@@ -1,5 +1,5 @@
 // DOM Elements
-const usernameInput = document.getElementById('username');
+// DOM Elementst = st usern.meInput = document.getElem;
 const messageInput = document.getElementById('message');
 const photoInput = document.getElementById('photo');
 const sendBtn = document.getElementById('sendBtn');
@@ -441,7 +441,7 @@ async function sendMessage() {
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     // Replace with your actual API endpoint
-    const response = await fetch("https://to-kizhoo.vercel.app/api/send", {
+    const response = await fetch("https://github.com/Kizhoo/ToKizhoo/blob/main/api/send.js", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, message, photos }),
