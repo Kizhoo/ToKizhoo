@@ -1,49 +1,45 @@
 export default async function handler(req, res) {
-  if (req.method !== 'POST')
-    return res.status(405).json({ message: 'Method not allowed' });
+  if (req.method !== "POST")
+    return res.status(405).json({ success: false });
 
   const { username, message, photos } = req.body;
-
-  if (!username || !message)
-    return res.status(400).json({ success: false });
 
   const BOT = process.env.BOT_TOKEN;
   const OWNER = process.env.OWNER_ID;
 
   try {
-    if (photos && photos.length > 0) {
-      for (let img of photos) {
-        await sendPhoto(img, `👤 ${username}\n💬 ${message}`, BOT, OWNER);
+    if (photos.length > 0) {
+      for (let p of photos) {
+        await sendPhoto(p, `👤 ${username}\n💬 ${message}`, BOT, OWNER);
       }
     } else {
-      await sendMessage(`💬 Pesan Baru\n👤 Nama: ${username}\n📝 Pesan: ${message}`, BOT, OWNER);
+      await sendText(`💬 Pesan Baru\n👤 Nama: ${username}\n📝 Pesan: ${message}`, BOT, OWNER);
     }
-
     res.status(200).json({ success: true });
-  } catch {
+  } catch (e) {
     res.status(500).json({ success: false });
   }
 }
 
-async function sendMessage(text, bot, id) {
+async function sendText(text, bot, chat) {
   await fetch(`https://api.telegram.org/bot${bot}/sendMessage`, {
-    method: 'POST',
+    method: "POST",
     headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({ chat_id: id, text })
+    body: JSON.stringify({ chat_id: chat, text })
   });
 }
 
-async function sendPhoto(base64, caption, bot, id) {
+async function sendPhoto(b64, caption, bot, chat) {
   const form = new FormData();
-  const file = base64.split(";base64,").pop();
+  const file = b64.split(";base64,")[1];
   const buffer = Buffer.from(file, "base64");
 
-  form.append("chat_id", id);
+  form.append("chat_id", chat);
   form.append("caption", caption);
-  form.append("photo", new Blob([buffer]), "image.jpg");
+  form.append("photo", new Blob([buffer]), "img.jpg");
 
   await fetch(`https://api.telegram.org/bot${bot}/sendPhoto`, {
-    method:"POST",
-    body:form
+    method: "POST",
+    body: form
   });
 }
