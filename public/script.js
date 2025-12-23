@@ -1,5 +1,5 @@
 // DOM Elements
-// DOM Elementst = st usern.meInput = document.getElem;
+const usernameInput = document.getElementById('username');
 const messageInput = document.getElementById('message');
 const photoInput = document.getElementById('photo');
 const sendBtn = document.getElementById('sendBtn');
