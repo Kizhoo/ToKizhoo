@@ -4,10 +4,6 @@
     {
       "src": "api/send.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "api/test.js",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
