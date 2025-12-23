@@ -441,7 +441,7 @@ async function sendMessage() {
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     // Replace with your actual API endpoint
-    const response = await fetch("https://github.com/Kizhoo/ToKizhoo/blob/main/api/send.js", {
+    const response = await fetch("https://to-kizhoo.vercel.app/api/send", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, message, photos }),
